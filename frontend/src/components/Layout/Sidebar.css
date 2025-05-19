@@ -1,0 +1,99 @@
+.app-sidebar {
+  width: 250px; /* Standard sidebar width */
+  background-color: #2d2d2d; /* Slightly different from header for visual separation */
+  color: #c0c0c0; /* Lighter grey for text */
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Full viewport height */
+  position: sticky; /* Sticks to the top-left */
+  top: 0;
+  border-right: 1px solid #3a3a3a; /* Border for dark mode */
+  transition: width 0.3s ease; /* For potential collapse feature */
+}
+
+body.light-mode .app-sidebar {
+  background-color: #f8f9fa; /* Light sidebar background */
+  color: #495057; /* Darker text for light mode */
+  border-right: 1px solid #dee2e6; /* Border for light mode */
+}
+
+.sidebar-logo-section {
+  padding: 16px 20px; /* Roughly aligns with header height */
+  text-align: center;
+  border-bottom: 1px solid #3a3a3a;
+  margin-bottom: 10px;
+}
+body.light-mode .sidebar-logo-section {
+  border-bottom: 1px solid #dee2e6;
+}
+.sidebar-app-name {
+  font-size: 1.4em;
+  font-weight: 600;
+  color: #e0e0e0;
+}
+body.light-mode .sidebar-app-name {
+  color: #007bff;
+}
+/* .sidebar-logo-img { max-width: 80%; height: auto; } */
+
+
+.sidebar-nav-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1; /* Takes available space */
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 12px 25px;
+  color: #c0c0c0;
+  text-decoration: none;
+  font-size: 1em;
+  transition: background-color 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
+  border-left: 3px solid transparent; /* For active state indicator */
+}
+body.light-mode .nav-link {
+  color: #495057;
+}
+
+.nav-link:hover {
+  background-color: #3a3a3a;
+  color: #ffffff;
+  padding-left: 28px; /* Indent on hover */
+}
+body.light-mode .nav-link:hover {
+  background-color: #e9ecef;
+  color: #0056b3;
+}
+
+.nav-link.active {
+  background-color: #646cff; /* Active link background - Vite purple */
+  color: #ffffff;
+  font-weight: 500;
+  border-left-color: #8187ff; /* Lighter purple accent */
+}
+body.light-mode .nav-link.active {
+  background-color: #007bff; /* Active link background for light mode - Bootstrap primary */
+  color: #ffffff;
+  border-left-color: #0056b3;
+}
+
+.nav-icon {
+  margin-right: 12px;
+  font-size: 1.2em; /* Adjust if using icons */
+  min-width: 20px; /* Ensure space for icon */
+}
+
+.sidebar-footer {
+  padding: 15px 20px;
+  text-align: center;
+  font-size: 0.8em;
+  border-top: 1px solid #3a3a3a;
+  color: #777;
+}
+body.light-mode .sidebar-footer {
+  border-top: 1px solid #dee2e6;
+  color: #6c757d;
+}

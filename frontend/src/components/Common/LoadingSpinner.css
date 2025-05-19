@@ -1,0 +1,50 @@
+.spinner-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* For inline usage */
+  width: 100%; /* Takes width of its container */
+}
+
+.spinner-container.full-page-spinner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(36, 36, 36, 0.7); /* Dark overlay for dark mode */
+  z-index: 9999;
+  color: #e0e0e0; /* Light text for dark overlay */
+}
+
+body.light-mode .spinner-container.full-page-spinner {
+  background-color: rgba(240, 242, 245, 0.8); /* Light overlay for light mode */
+  color: #333333; /* Dark text for light overlay */
+}
+
+.spinner {
+  border: 5px solid #4a4a4a; /* Dark mode spinner track */
+  border-top: 5px solid #646cff; /* Vite purple for spinner active part */
+  border-radius: 50%;
+  width: 40px; /* Slightly smaller */
+  height: 40px;
+  animation: spin 0.8s linear infinite;
+}
+
+body.light-mode .spinner {
+  border: 5px solid #e0e0e0; /* Light mode spinner track */
+  border-top: 5px solid #007bff; /* Bootstrap primary for light mode spinner */
+}
+
+.spinner-message {
+  margin-top: 15px;
+  font-size: 0.95em;
+  font-weight: 500;
+  /* Color inherited from .spinner-container or body */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

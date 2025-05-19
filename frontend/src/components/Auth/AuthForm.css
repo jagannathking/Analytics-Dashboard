@@ -1,0 +1,109 @@
+
+.auth-container { 
+  display: flex;
+  flex-direction: column; /* For potential header/footer on this page */
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  padding: 20px;
+  margin: auto;
+  width: 100%;
+  /* Background is handled by body's default or light-mode class */
+} 
+
+
+
+
+
+/* .auth-form-wrapper will use .card styles from index.css and can be further styled */
+.auth-form-wrapper {
+  width: 100%;
+  max-width: 420px; /* Slightly wider for a modern feel */
+  text-align: center;
+  padding: 30px 35px; /* Custom padding for the auth card */
+}
+
+.auth-form-wrapper h2 {
+  margin-bottom: 25px;
+  font-size: 1.8em;
+  /* Color inherited from .card or body */
+}
+
+.auth-form .form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.auth-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 0.9em;
+  /* Color inherited */
+}
+
+.auth-form input[type="text"],
+.auth-form input[type="password"],
+.auth-form input[type="email"] { /* Added email for registration if needed */
+  width: 100%;
+  padding: 12px 15px; /* More padding for better feel */
+  border: 1px solid #4a4a4a; /* Dark mode border */
+  border-radius: 6px; /* Slightly more rounded */
+  box-sizing: border-box;
+  font-size: 1em;
+  background-color: #2a2a2a; /* Dark input background */
+  color: #e0e0e0; /* Light text for dark input */
+  transition: border-color 0.2s ease;
+}
+
+body.light-mode .auth-form input[type="text"],
+body.light-mode .auth-form input[type="password"],
+body.light-mode .auth-form input[type="email"] {
+  border: 1px solid #ced4da;
+  background-color: #ffffff;
+  color: #495057;
+}
+
+.auth-form input:focus {
+  border-color: #646cff; /* Vite purple on focus */
+  outline: 0;
+  box-shadow: 0 0 0 0.1rem rgba(100, 108, 255, 0.2); /* Subtle focus shadow */
+}
+body.light-mode .auth-form input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.2);
+}
+
+.auth-button { /* Uses global button styles, can override here */
+  /* .full-width class can be applied for 100% width */
+  padding: 12px;
+  font-size: 1.05em;
+  font-weight: 500;
+  margin-top: 10px; /* Space above button */
+  /* background-color and color are from global button styles */
+}
+
+.auth-error-message {
+  color: #ff4d4f; /* A brighter red for errors */
+  background-color: rgba(255, 77, 79, 0.1); /* Light red background for error box */
+  border: 1px solid rgba(255, 77, 79, 0.3);
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-size: 0.9em;
+  text-align: center;
+}
+body.light-mode .auth-error-message {
+  color: #d8000c;
+  background-color: #ffbaba;
+  border-color: #d8000c60;
+}
+
+.auth-switch-text {
+  margin-top: 25px;
+  font-size: 0.9em;
+}
+.auth-switch-text a {
+  font-weight: 600;
+  /* color: #646cff; */ /* From global 'a' styles */
+}

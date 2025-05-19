@@ -1,0 +1,72 @@
+/* .summary-card already uses global .card from index.css */
+.summary-card {
+  display: flex;
+  flex-direction: column; /* Stack title, value, subvalue */
+  justify-content: space-between; /* If card has fixed height */
+  min-height: 120px; /* Ensure a minimum size */
+}
+
+.summary-card.loading-placeholder .placeholder-title {
+  height: 1em; width: 60%; background-color: #444; margin-bottom: 10px; border-radius: 4px;
+}
+.summary-card.loading-placeholder .placeholder-value {
+  height: 1.8em; width: 40%; background-color: #555; margin-bottom: 8px; border-radius: 4px;
+}
+.summary-card.loading-placeholder .placeholder-subvalue {
+  height: 0.9em; width: 70%; background-color: #444; border-radius: 4px;
+}
+body.light-mode .summary-card.loading-placeholder .placeholder-title,
+body.light-mode .summary-card.loading-placeholder .placeholder-value,
+body.light-mode .summary-card.loading-placeholder .placeholder-subvalue {
+  background-color: #e0e0e0;
+}
+
+
+/* .summary-card-icon { /* Styles for an optional icon */
+  /* font-size: 2em; margin-bottom: 10px; color: #646cff; */
+/* } */
+/* body.light-mode .summary-card-icon { color: #007bff; } */
+
+
+.summary-card-title {
+  font-size: 0.95em;
+  font-weight: 500;
+  margin-bottom: 8px;
+  opacity: 0.8;
+  /* Color inherited */
+}
+
+.summary-card-value {
+  font-size: 2em; /* Prominent value */
+  font-weight: 600;
+  margin-bottom: 5px;
+  line-height: 1.1;
+  color: #79c0ff; /* Light blue for values in dark mode */
+}
+body.light-mode .summary-card-value {
+  color: #007bff; /* Primary blue for values in light mode */
+}
+
+.summary-card-subvalue {
+  font-size: 0.85em;
+  opacity: 0.7;
+  margin-bottom: 10px;
+}
+
+.summary-card-trend {
+  display: flex;
+  align-items: center;
+  font-size: 0.8em;
+  margin-top: auto; /* Pushes trend to bottom if card flexes */
+}
+.summary-card-trend svg { /* For trend icons */
+  width: 1em;
+  height: 1em;
+  margin-right: 4px;
+}
+.summary-card-trend.trend-up { color: #2ecc71; /* Green */ }
+.summary-card-trend.trend-down { color: #e74c3c; /* Red */ }
+.summary-card-trend.trend-neutral { color: inherit; opacity: 0.7; } /* Greyish */
+
+body.light-mode .summary-card-trend.trend-up { color: #28a745; }
+body.light-mode .summary-card-trend.trend-down { color: #dc3545; }

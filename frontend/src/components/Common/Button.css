@@ -1,0 +1,106 @@
+/* .custom-btn inherits from global button styles in index.css */
+.custom-btn {
+  display: inline-flex; /* For spinner alignment */
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Space between icon/spinner and text */
+  /* Global button styles are the base */
+}
+
+/* Variant Styles */
+.custom-btn-primary {
+  background-color: #646cff; /* Vite purple */
+  color: white;
+  border-color: #646cff;
+}
+.custom-btn-primary:hover {
+  background-color: #535bf2;
+  border-color: #535bf2;
+}
+body.light-mode .custom-btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+body.light-mode .custom-btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.custom-btn-secondary {
+  background-color: #4a4a4a;
+  color: #e0e0e0;
+  border-color: #555;
+}
+.custom-btn-secondary:hover {
+  background-color: #555;
+  border-color: #666;
+}
+body.light-mode .custom-btn-secondary {
+  background-color: #6c757d;
+  color: white;
+  border-color: #6c757d;
+}
+body.light-mode .custom-btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+.custom-btn-danger {
+  background-color: #e74c3c;
+  color: white;
+  border-color: #e74c3c;
+}
+.custom-btn-danger:hover {
+  background-color: #c0392b;
+  border-color: #c0392b;
+}
+body.light-mode .custom-btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+body.light-mode .custom-btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+/* Size Styles */
+.custom-btn-small {
+  padding: 0.4em 0.8em;
+  font-size: 0.85em;
+}
+.custom-btn-large {
+  padding: 0.8em 1.5em;
+  font-size: 1.1em;
+}
+
+/* Loading State */
+.custom-btn.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+.btn-spinner {
+  display: inline-block;
+  width: 1em; /* Relative to button font size */
+  height: 1em;
+  border: 2px solid currentColor; /* Use button text color */
+  border-bottom-color: transparent; /* Creates the gap */
+  border-radius: 50%;
+  animation: btn-spin 0.6s linear infinite;
+}
+@keyframes btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.sr-only {
+  /* For accessibility, hide text but make it available to screen readers */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

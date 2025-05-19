@@ -1,0 +1,98 @@
+/* .filter-bar-form already uses .card styles from index.css */
+.filter-bar-form {
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+  gap: 20px; /* Space between filter items */
+  align-items: flex-end; /* Align items to the bottom, useful for button alignment */
+  padding: 20px;
+}
+
+.filter-item {
+  display: flex;
+  flex-direction: column;
+  min-width: 180px; /* Minimum width for each filter item */
+  flex: 1; /* Allow items to grow */
+}
+
+.filter-item label {
+  margin-bottom: 6px;
+  font-size: 0.85em;
+  font-weight: 500;
+  opacity: 0.9;
+  /* Color inherited */
+}
+
+.filter-item input[type="date"],
+.filter-item input[type="number"],
+.filter-item select {
+  padding: 10px 12px;
+  border: 1px solid #4a4a4a; /* Dark mode border */
+  border-radius: 6px;
+  background-color: #2a2a2a; /* Dark input background */
+  color: #e0e0e0; /* Light text for dark input */
+  font-size: 0.95em;
+  box-sizing: border-box; /* Ensure padding doesn't increase width */
+  width: 100%; /* Make inputs take full width of .filter-item */
+}
+
+body.light-mode .filter-item input[type="date"],
+body.light-mode .filter-item input[type="number"],
+body.light-mode .filter-item select {
+  border-color: #ced4da;
+  background-color: #ffffff;
+  color: #495057;
+}
+
+.filter-item input[type="date"]:focus,
+.filter-item input[type="number"]:focus,
+.filter-item select:focus {
+  border-color: #646cff; /* Vite purple */
+  outline: 0;
+  box-shadow: 0 0 0 0.1rem rgba(100, 108, 255, 0.2);
+}
+body.light-mode .filter-item input[type="date"]:focus,
+body.light-mode .filter-item input[type="number"]:focus,
+body.light-mode .filter-item select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.2);
+}
+
+
+.filter-item-score-group .score-inputs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.filter-item-score-group .score-inputs input {
+  width: calc(50% - 4px); /* Adjust for gap */
+  text-align: center;
+}
+.filter-item-score-group .score-inputs span {
+  /* Style for the hyphen if needed */
+  padding: 0 5px;
+}
+
+
+.filter-actions {
+  display: flex;
+  gap: 10px;
+  margin-left: auto; /* Pushes buttons to the right if there's space */
+  padding-top: 20px; /* Align with labels if they wrap */
+}
+
+/* On smaller screens, stack filter items and actions */
+@media (max-width: 992px) {
+  .filter-item {
+    min-width: calc(50% - 10px); /* Two items per row */
+  }
+  .filter-actions {
+    width: 100%;
+    justify-content: flex-end;
+    margin-left: 0;
+  }
+}
+@media (max-width: 600px) {
+  .filter-item {
+    min-width: 100%; /* One item per row */
+  }
+}

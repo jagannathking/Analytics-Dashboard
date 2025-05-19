@@ -1,0 +1,72 @@
+/* .dashboard-page styles are in App.css or the page component itself if needed for overall structure */
+
+.dashboard-grid { /* Main grid for dashboard content */
+  display: grid;
+  gap: 25px; /* Gap between all grid items */
+}
+
+.summary-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); /* Responsive cards */
+  gap: 20px;
+}
+
+.charts-container {
+  display: grid;
+  /* For now, single column. For two charts side-by-side: grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); */
+  grid-template-columns: 1fr;
+  gap: 25px;
+}
+
+.table-section-container {
+  margin-top: 10px; /* Space above tables */
+}
+
+
+/* Specific styling for chart wrappers if needed beyond .card */
+.chart-wrapper.card { /* If you wrap charts in a component with this class */
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.chart-wrapper h4 { /* Titles within chart cards */
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.1em;
+  font-weight: 500;
+  /* Color inherited */
+}
+
+.chart-loading-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 350px; /* Match chart height */
+  font-style: italic;
+  opacity: 0.7;
+}
+
+/* Custom Tooltip for Recharts - place here or in a dedicated chart CSS */
+.custom-chart-tooltip {
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-size: 0.9em;
+}
+.custom-chart-tooltip.dark {
+  background-color: rgba(40, 40, 40, 0.95); /* Dark background */
+  color: #e0e0e0; /* Light text */
+  border: 1px solid #5a5a5a;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.custom-chart-tooltip.light {
+  background-color: rgba(252, 252, 252, 0.98); /* Light background */
+  color: #333333; /* Dark text */
+  border: 1px solid #d0d0d0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.tooltip-label {
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+.tooltip-value {
+  /* Custom styling for the value if needed */
+}

@@ -1,0 +1,91 @@
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 25px; /* Matches page-content-wrapper horizontal padding */
+  height: 60px; /* Standard header height */
+  background-color: #2d2d2d; /* Dark mode header background */
+  color: #e0e0e0; /* Light text for dark header */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  position: sticky; /* Makes the header stick to the top */
+  top: 0;
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+body.light-mode .app-header {
+  background-color: #ffffff; /* White header for light mode */
+  color: #333333;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.header-logo a {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: inherit; /* Inherits from .app-header color */
+  text-decoration: none;
+}
+body.light-mode .header-logo a {
+  color: #007bff; /* Specific logo color for light mode if desired */
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Space between theme toggle and user info */
+}
+
+.theme-toggle-button {
+  background: none;
+  border: 1px solid #555;
+  color: #e0e0e0;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+body.light-mode .theme-toggle-button {
+  border-color: #ccc;
+  color: #333;
+}
+.theme-toggle-button:hover {
+  background-color: #444;
+}
+body.light-mode .theme-toggle-button:hover {
+  background-color: #f0f0f0;
+}
+.icon-size { /* If using Heroicons or similar */
+  width: 18px;
+  height: 18px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.username-display {
+  font-weight: 500;
+}
+
+.logout-button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.5em 1em;
+  font-size: 0.9em;
+}
+.logout-button:hover {
+  background-color: #c0392b;
+  border-color: transparent; /* Override global button hover if needed */
+}
+body.light-mode .logout-button {
+  /* Keep logout button distinct in light mode too */
+  background-color: #dc3545;
+}
+body.light-mode .logout-button:hover {
+  background-color: #c82333;
+}

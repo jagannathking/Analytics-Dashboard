@@ -1,0 +1,30 @@
+/* .custom-card already inherits from global .card in index.css */
+
+.custom-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #3a3a3a; /* Dark mode border */
+}
+
+body.light-mode .custom-card-header {
+  border-bottom: 1px solid #e0e0e0; /* Light mode border */
+}
+
+.custom-card-title {
+  font-size: 1.2em; /* Slightly larger than default h3 perhaps */
+  font-weight: 600;
+  margin-bottom: 0; /* Remove default h3 margin */
+}
+
+.custom-card-actions {
+  /* Styles for action buttons or elements in the card header */
+  display: flex;
+  gap: 10px;
+}
+
+.custom-card-body {
+  /* Specific styles for the body content of the card if needed */
+}
