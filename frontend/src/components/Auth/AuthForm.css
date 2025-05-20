@@ -1,32 +1,25 @@
-
-.auth-container { 
+.auth-container {
   display: flex;
-  flex-direction: column; /* For potential header/footer on this page */
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100%;
   padding: 20px;
-  margin: auto;
+  height: 100%;
   width: 100%;
-  /* Background is handled by body's default or light-mode class */
-} 
-
-
-
-
+  margin: auto;
+}
 
 /* .auth-form-wrapper will use .card styles from index.css and can be further styled */
 .auth-form-wrapper {
   width: 100%;
-  max-width: 420px; /* Slightly wider for a modern feel */
+  max-width: 420px;
   text-align: center;
-  padding: 30px 35px; /* Custom padding for the auth card */
+  padding: 30px 35px;
 }
 
 .auth-form-wrapper h2 {
   margin-bottom: 25px;
   font-size: 1.8em;
-  /* Color inherited from .card or body */
 }
 
 .auth-form .form-group {
@@ -39,20 +32,19 @@
   margin-bottom: 8px;
   font-weight: 500;
   font-size: 0.9em;
-  /* Color inherited */
 }
 
 .auth-form input[type="text"],
 .auth-form input[type="password"],
-.auth-form input[type="email"] { /* Added email for registration if needed */
+.auth-form input[type="email"] {
   width: 100%;
-  padding: 12px 15px; /* More padding for better feel */
-  border: 1px solid #4a4a4a; /* Dark mode border */
-  border-radius: 6px; /* Slightly more rounded */
+  padding: 12px 15px;
+  border: 1px solid #4a4a4a;
+  border-radius: 6px;
   box-sizing: border-box;
   font-size: 1em;
-  background-color: #2a2a2a; /* Dark input background */
-  color: #e0e0e0; /* Light text for dark input */
+  background-color: #2a2a2a;
+  color: #e0e0e0;
   transition: border-color 0.2s ease;
 }
 
@@ -65,38 +57,53 @@ body.light-mode .auth-form input[type="email"] {
 }
 
 .auth-form input:focus {
-  border-color: #646cff; /* Vite purple on focus */
+  border-color: #646cff;
   outline: 0;
-  box-shadow: 0 0 0 0.1rem rgba(100, 108, 255, 0.2); /* Subtle focus shadow */
+  box-shadow: 0 0 0 0.1rem rgba(100, 108, 255, 0.2);
 }
 body.light-mode .auth-form input:focus {
   border-color: #007bff;
   box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.2);
 }
 
-.auth-button { /* Uses global button styles, can override here */
-  /* .full-width class can be applied for 100% width */
+.auth-button {
   padding: 12px;
   font-size: 1.05em;
   font-weight: 500;
-  margin-top: 10px; /* Space above button */
-  /* background-color and color are from global button styles */
+  margin-top: 10px;
 }
 
-.auth-error-message {
-  color: #ff4d4f; /* A brighter red for errors */
-  background-color: rgba(255, 77, 79, 0.1); /* Light red background for error box */
-  border: 1px solid rgba(255, 77, 79, 0.3);
+/* Common style for feedback messages */
+.auth-feedback-message {
   padding: 10px;
   border-radius: 4px;
   margin-bottom: 20px;
   font-size: 0.9em;
   text-align: center;
 }
+
+.auth-error-message {
+  /* Extends .auth-feedback-message */
+  color: #ff4d4f;
+  background-color: rgba(255, 77, 79, 0.1);
+  border: 1px solid rgba(255, 77, 79, 0.3);
+}
 body.light-mode .auth-error-message {
   color: #d8000c;
   background-color: #ffbaba;
   border-color: #d8000c60;
+}
+
+.auth-success-message {
+  /* Extends .auth-feedback-message */
+  color: #28a745;
+  background-color: rgba(40, 167, 69, 0.1);
+  border: 1px solid rgba(40, 167, 69, 0.3);
+}
+body.light-mode .auth-success-message {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
 }
 
 .auth-switch-text {
@@ -105,5 +112,4 @@ body.light-mode .auth-error-message {
 }
 .auth-switch-text a {
   font-weight: 600;
-  /* color: #646cff; */ /* From global 'a' styles */
 }

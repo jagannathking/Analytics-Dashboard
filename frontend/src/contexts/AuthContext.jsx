@@ -15,17 +15,17 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    applyTheme(theme); // Apply initial theme
+    applyTheme(theme);
   }, [applyTheme, theme]);
-
 
   const fetchUser = useCallback(async () => {
     const token = localStorage.getItem('authToken');
     if (token) {
       try {
-        setLoading(true);
+        // Keep loading true until user is fetched or error occurs
+        // setLoading(true); // setLoading(true) is already outside if(token)
         const { data } = await getMe();
-        setUser(data);
+        setUser(data); // data should be { _id, username, role }
       } catch (error) {
         console.error('Failed to fetch user, removing token.', error.response?.data?.message || error.message);
         localStorage.removeItem('authToken');
@@ -34,20 +34,21 @@ export const AuthProvider = ({ children }) => {
         setLoading(false);
       }
     } else {
-      setLoading(false);
+      setLoading(false); // No token, not authenticated
     }
   }, []);
 
   useEffect(() => {
+    setLoading(true); // Set loading true when AuthProvider mounts
     fetchUser();
   }, [fetchUser]);
 
   const login = async (credentials) => {
     setLoading(true);
     try {
-      const { data } = await apiLogin(credentials);
+      const { data } = await apiLogin(credentials); // data = { _id, username, role, token }
       localStorage.setItem('authToken', data.token);
-      setUser({ _id: data._id, username: data.username, role: data.role });
+      setUser({ _id: data._id, username: data.username, role: data.role }); // Set user from response
       setLoading(false);
       return true;
     } catch (error) {
@@ -60,10 +61,13 @@ export const AuthProvider = ({ children }) => {
   const register = async (userData) => {
     setLoading(true);
     try {
-      // Backend register might return user and token or just a success message
-      await apiRegister(userData);
+      // Backend's /api/auth/register currently expects username, password, and optionally role.
+      // For self-registration, it's best if the backend assigns a default role
+      // if one isn't provided or if it's a public registration endpoint.
+      const response = await apiRegister(userData);
       setLoading(false);
-      return { success: true, message: "Registration successful! Please login." };
+      // Assuming backend responds with a success message or relevant data
+      return { success: true, message: response.data?.message || "Registration successful! Please login." };
     } catch (error) {
       setLoading(false);
       console.error('Registration failed:', error.response?.data?.message || error.message);
@@ -74,8 +78,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem('authToken');
     setUser(null);
-    // navigate('/login') could be called here if AuthContext had access to router,
-    // or handled in the component calling logout.
+    // Navigation to /login is usually handled by ProtectedRoute or in the component calling logout.
   };
 
   const toggleTheme = () => {

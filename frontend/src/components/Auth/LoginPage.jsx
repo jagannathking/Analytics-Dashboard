@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate, Link , useLocation} from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
-import './AuthForm.css'; // Styles for the form
+import './AuthForm.css';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -10,21 +10,21 @@ const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation(); // To get the 'from' state for redirection
-  const from = location.state?.from?.pathname || "/";
-
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/"; // Redirect to intended page or root (dashboard)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
     try {
-      const success = await login({ username, password });
-      if (success) {
-        navigate(from, { replace: true }); 
-      }
+      await login({ username, password });
+      navigate(from, { replace: true });
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed. Please check credentials.');
+      const errorMessage = err.response?.data?.message ||
+                           err.message ||
+                           'Login failed. Please check credentials or try again later.';
+      setError(errorMessage);
     } finally {
       setIsLoading(false);
     }
@@ -32,15 +32,19 @@ const LoginPage = () => {
 
   return (
     <div className="auth-container">
-      <div className="auth-form-wrapper card"> {/* Use .card for consistent styling */}
+      <div className="auth-form-wrapper card">
         <h2>Dashboard Login</h2>
         <form onSubmit={handleSubmit} className="auth-form">
-          {error && <p className="auth-error-message">{error}</p>}
+          {error && (
+            <p className="auth-feedback-message auth-error-message" aria-live="assertive">
+              {error}
+            </p>
+          )}
           <div className="form-group">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="login-username">Username</label> {/* Unique ID */}
             <input
               type="text"
-              id="username"
+              id="login-username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
@@ -50,10 +54,10 @@ const LoginPage = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="login-password">Password</label> {/* Unique ID */}
             <input
               type="password"
-              id="password"
+              id="login-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -67,11 +71,11 @@ const LoginPage = () => {
           </button>
         </form>
         <p className="auth-switch-text">
-          {/* Don't have an account? <Link to="/register">Sign Up</Link> */}
-          {/* For now, registration might be handled by an admin */}
+          Don't have an account? <Link to="/register">Sign Up</Link>
         </p>
       </div>
     </div>
   );
 };
+
 export default LoginPage;

@@ -1,4 +1,3 @@
-// frontend/src/services/api.js
 import axios from 'axios';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -22,7 +21,7 @@ apiClient.interceptors.request.use(
 
 // --- Auth ---
 export const login = (credentials) => apiClient.post('/auth/login', credentials);
-export const register = (userData) => apiClient.post('/auth/register', userData);
+export const register = (userData) => apiClient.post('/auth/register', userData); // This is for self-registration
 export const getMe = () => apiClient.get('/auth/me');
 
 // --- Dashboard ---
@@ -38,26 +37,23 @@ export const updateLead = (id, leadData) => apiClient.put(`/leads/${id}`, leadDa
 export const deleteLead = (id) => apiClient.delete(`/leads/${id}`);
 
 // --- Campaigns ---
-// For dropdowns
+// For dropdowns in FilterBar
 export const getCampaignOptions = () => apiClient.get('/leads/campaigns/options');
 
-// For CampaignsPage.jsx - **TEMPORARILY use the options route if you haven't made /api/campaigns yet**
-// This will fetch all campaigns but without pagination from backend. Frontend can do basic display.
-// NOTE: `params` passed to this function will be IGNORED by the current backend '/leads/campaigns/options' endpoint.
+// For CampaignsPage.jsx - lists all campaigns (can be paginated on backend later)
+// Currently, this uses the same endpoint as options; for a real Campaigns CRUD page,
+// you'd want a dedicated /api/campaigns endpoint with GET (all, paginated), GET by ID, PUT, DELETE.
 export const getCampaigns = (params) => {
-  console.warn("Using /api/leads/campaigns/options for getCampaigns. Pagination/filtering from backend not supported on this endpoint.", params);
-  return apiClient.get('/leads/campaigns/options'); // Using existing endpoint
+  // console.warn("API: getCampaigns is using /api/leads/campaigns/options. For full features, implement dedicated /api/campaigns routes.", params);
+  return apiClient.get('/leads/campaigns/options', { params }); // For now, use the options endpoint
 }
 
-// For creating campaigns (still uses the route under /api/leads)
+// For creating campaigns (still uses the route under /api/leads as per backend setup)
 export const createCampaign = (campaignData) => apiClient.post('/leads/campaigns', campaignData);
 
-// **TODO for full Campaign Management Page:**
-// You will need to implement dedicated backend routes like /api/campaigns for GET (with pagination), PUT, DELETE
-// and then update these functions accordingly:
+// Future dedicated campaign routes (backend needs to implement these at /api/campaigns/...)
 // export const getCampaignById = (id) => apiClient.get(`/campaigns/${id}`);
 // export const updateCampaign = (id, campaignData) => apiClient.put(`/campaigns/${id}`, campaignData);
 // export const deleteCampaign = (id) => apiClient.delete(`/campaigns/${id}`);
-
 
 export default apiClient;
